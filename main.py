@@ -148,8 +148,6 @@ rn = '\n'
 
 fo = open('report.txt', "w+")
 fo1 = open('상세report.txt', "w+")
-susFileNames = []  #의심스러운 파일 이름
-susFileSus = []  #의심스러운 파일에 해당하는 의심
 
 for fname in fnames:
     infoStr = infoStr + '파일 ' + fname + ': ' + rn
@@ -178,8 +176,9 @@ for fname in fnames:
         #빈 시트 체크
         if isNone(fline[0].value):
             #밀린 시트 처리 방법 찾아야함
-            if not isNone(ws[whatRC(ws.max_row, ws.max_column)].value):
+            if ws[whatRC(ws.max_row, ws.max_column)].value is not None: #' '여도 밀렸음
                 milSheetNames.append(sname)
+                susSheetNames.append(sname)
             else:
                 #빈 시트
                 emptySheetNames.append(sname)
@@ -213,7 +212,10 @@ for fname in fnames:
             #연도 체크 넣는다면 여기
         #넘어가는 범위
     wb.close()
+
     #output
+    susFileNames=[]
+    susFileSus=[]
     if len(susSheetNames) > 0:
         susFileNames.append(fname)
         susFileSus.append(susSheetNames)
