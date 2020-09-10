@@ -149,6 +149,10 @@ rn = '\n'
 fo = open('report.txt', "w+")
 fo1 = open('상세report.txt', "w+")
 
+#output
+susFileNames=[]
+susFileSus=[]
+
 for fname in fnames:
     infoStr = infoStr + '파일 ' + fname + ': ' + rn
     wb = load_workbook(fname)
@@ -199,9 +203,11 @@ for fname in fnames:
             if str(ws['C5'].value) == '개인사업자':
               errStr += '개인사업자입니다.'+rn
               susSheetNames.append('1.의 기업형태: 개인사업자')
+              continue #작동하나?
             if '폐업' in str(ws['c16'].value):
               errStr += '폐업자입니다.'+rn
               susSheetNames.append('1.의 휴폐업정보: 폐업')
+              continue
 
         #첫 줄 체크
         #일반적인 범위
@@ -213,9 +219,6 @@ for fname in fnames:
         #넘어가는 범위
     wb.close()
 
-    #output
-    susFileNames=[]
-    susFileSus=[]
     if len(susSheetNames) > 0:
         susFileNames.append(fname)
         susFileSus.append(susSheetNames)
