@@ -1,5 +1,5 @@
 # CheckFirstLinesOfExcelFilev3
-1st lines of excel workbook (each sheet) v2
+1st lines of excel workbook (each sheet) v3
 
 ### Motivation
 I had to inspect 2 types of spreadsheet files in my part-time job.  
